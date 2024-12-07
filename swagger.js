@@ -1,16 +1,16 @@
 const swaggerAutogen = require('swagger-autogen')();
 
-const outputFile = './swagger-output.json';  
-const endpointsFiles = ['./routes/*.js'];     
+const outputFile = './swagger-output.json';  // Make sure this is the correct path
+const endpointsFiles = ['./routes/*.js'];    // Update this to point to where your routes are defined
 
 const doc = {
   info: {
-    title: 'user management api',  
-    description: 'API documentation for user management api',  
+    title: 'User Management API',  // Title of your API
+    description: 'API documentation for user management',  // Description
   },
-  host: 'localhost:8080',  
-  basePath: '/users',  
+  host: 'user-management-api-main-3.onrender.com',  // Change this to your deployed API URL
+  basePath: '/users',  // This should match your routes
 };
 
-//this will generate swagger.json
+// This will generate swagger-output.json
 swaggerAutogen(outputFile, endpointsFiles, doc);
