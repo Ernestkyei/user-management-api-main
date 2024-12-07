@@ -1,0 +1,44 @@
+
+#GET ALL CONTACT
+GET http://localhost:8080/users
+
+
+
+### Get product Id
+GET http://localhost:8080/users
+
+
+
+
+POST http://localhost:8080/users HTTP/1.1
+Content-Type: application/json
+
+
+
+  {
+    "name": "Bluetooth Headphones",
+    "price": 79.99,
+    "category": "Audio",
+    "description": "Noise-cancelling Bluetooth headphones with over-ear design",
+    "stockQuantity": 50
+  }
+
+
+
+### PUT contact
+PUT http://localhost:8080/users/
+Content-Type: application/json
+
+
+  {
+    "name": "Wireless Mouse",
+    "price": 25.99,
+    "category": "Electronics",
+    "description": "Ergonomic wireless mouse with long battery life",
+    "stockQuantity": 100
+  }
+
+//Delete contact
+DELETE http://localhost:8080/users
+
+ 

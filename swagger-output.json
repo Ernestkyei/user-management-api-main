@@ -1,0 +1,240 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "User Management API",
+    "description": "API to manage user information",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/users",
+  "schemes": ["http"],  
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Retrieve all users",
+        "description": "Fetches a list of all users",
+        "operationId": "getAllUsers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of users retrieved successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The unique identifier of the user"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the user"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email of the user"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The role of the user"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Creation date"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Last update date"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "description": "Adds a new user to the system",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the user"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email of the user"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "The password for the user"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The role of the user"
+                }
+              },
+              "example": {
+                "name": "Jane Doe",
+                "email": "jane.doe@example.com",
+                "password": "securePassword123",
+                "role": "admin"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "summary": "Retrieve user by ID",
+        "description": "Fetches details of a user by their unique ID",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The unique identifier of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details retrieved successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a user",
+        "description": "Updates details of an existing user by ID",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The unique identifier of the user"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "Updated User",
+                "email": "updated.email@example.com",
+                "password": "newPassword123",
+                "role": "user"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user",
+        "description": "Removes a user from the system by their ID",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The unique identifier of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
