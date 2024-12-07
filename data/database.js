@@ -6,6 +6,12 @@ let database = null;
 // Function to initialize the database
 const initDb = (callback) => {
     const uri = process.env.MONGO_URI; // Your MongoDB URI from the .env file
+    console.log("MongoDB URI:", uri); // Log the URI to check if it's loaded correctly
+
+    if (!uri || !uri.startsWith("mongodb")) {
+        return callback(new Error("Invalid MongoDB URI"), null);
+    }
+
     if (database) {
         console.log("Database is already initialized");
         return callback(null, database);
@@ -18,6 +24,7 @@ const initDb = (callback) => {
             return callback(null, database);
         })
         .catch(err => {
+            console.error("Error connecting to MongoDB:", err); // Log detailed error
             return callback(err, null);
         });
 };
