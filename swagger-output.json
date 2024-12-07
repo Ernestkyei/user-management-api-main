@@ -5,7 +5,7 @@
     "description": "API to manage user information",
     "version": "1.0.0"
   },
-  "host": "user-management-api-main-3.onrender.com",  
+  "host": "https://user-management-api-main-1.onrender.com",  
   "basePath": "/users",
   "schemes": ["https"], 
   "paths": {
