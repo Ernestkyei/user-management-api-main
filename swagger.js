@@ -8,7 +8,7 @@ const doc = {
     title: 'User Management API',  // Title of your API
     description: 'API documentation for user management',  // Description
   },
-  host: 'user-management-api-main-3.onrender.com',  // Change this to your deployed API URL
+  host: 'https://user-management-api-main-1.onrender.com',  // Change this to your deployed API URL
   basePath: '/users',  // This should match your routes
 };
 
