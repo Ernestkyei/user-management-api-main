@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
   "host": "https://user-management-api-main-1.onrender.com",  
-  "basePath": "/users",
+  "basePath": "/users", 
   "schemes": ["https"], 
   "paths": {
     "/users": {
@@ -23,35 +23,50 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "id": {
-                    "type": "string",
-                    "description": "The unique identifier of the user"
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "The name of the user"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "The email of the user"
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "The role of the user"
-                  },
-                  "createdAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "Creation date"
-                  },
-                  "updatedAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "Last update date"
-                  }
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "role": { "type": "string" },
+                  "createdAt": { "type": "string", "format": "date-time" },
+                  "updatedAt": { "type": "string", "format": "date-time" }
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "description": "Adds a new user to the system",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "role": { "type": "string" }
+              },
+              "example": {
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "password": "password123",
+                "role": "admin"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully"
           },
           "500": {
             "description": "Internal Server Error"
@@ -79,28 +94,84 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "role": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                }
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "role": { "type": "string" },
+                "createdAt": { "type": "string", "format": "date-time" },
+                "updatedAt": { "type": "string", "format": "date-time" }
               }
             }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a user",
+        "description": "Updates details of an existing user by ID",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The unique identifier of the user"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "role": { "type": "string" }
+              },
+              "example": {
+                "name": "Updated User",
+                "email": "updated.user@example.com",
+                "password": "newpassword123",
+                "role": "user"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user",
+        "description": "Removes a user from the system by their ID",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The unique identifier of the user"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
           },
           "404": {
             "description": "User not found"
